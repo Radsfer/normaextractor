@@ -55,6 +55,10 @@ class LLMEngine:
     def count_tokens(self, text: str) -> int:
         return len(self.tokenize(text))
 
+    def count(self, text: str) -> int:
+        """Alias compatível com o protocolo Tokenizer do serviço de chunking."""
+        return self.count_tokens(text)
+
     def generate(self, prompt: str, max_tokens: int = 512, temperature: float = 0.1) -> str:
         with self._lock:
             out = self._llm(prompt, max_tokens=max_tokens, temperature=temperature, stream=False)
