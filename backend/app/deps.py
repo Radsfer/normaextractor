@@ -61,14 +61,44 @@ class LLMEngine:
 
     def generate(self, prompt: str, max_tokens: int = 512, temperature: float = 0.1) -> str:
         with self._lock:
-            out = self._llm(prompt, max_tokens=max_tokens, temperature=temperature, stream=False)
-        return out["choices"][0]["text"]
+            out = self._llm.create_chat_completion(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "Você é um assistente especializado em documentos normativos. "
+                            "Responda de forma objetiva e, quando solicitado, APENAS com JSON válido."
+                        ),
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                max_tokens=max_tokens,
+                temperature=temperature,
+            )
+        return (out["choices"][0]["message"].get("content") or "").strip()
 
     def generate_stream(self, prompt: str, max_tokens: int = 1024, temperature: float = 0.3):
-        """Gerador token a token. O lock é mantido durante toda a geração."""
+        """Gerador token a token em formato de chat. O lock é mantido durante toda a geração."""
         with self._lock:
-            for chunk in self._llm(prompt, max_tokens=max_tokens, temperature=temperature, stream=True):
-                yield chunk["choices"][0]["text"]
+            stream = self._llm.create_chat_completion(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Você é um assistente especializado em documentos normativos.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                max_tokens=max_tokens,
+                temperature=temperature,
+                stream=True,
+            )
+            for chunk in stream:
+                if not chunk.get("choices"):
+                    continue
+                delta = chunk["choices"][0].get("delta") or {}
+                token = delta.get("content")
+                if token:
+                    yield token
 
 
 class SentenceTransformerEmbedder:
