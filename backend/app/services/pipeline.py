@@ -127,8 +127,8 @@ def process_document(document_id: str, services: Services | None = None, db: Ses
                     {
                         "document_id": document_id,
                         "order": row.order,
-                        "page_start": row.page_start,
-                        "page_end": row.page_end,
+                        "page_start": row.page_start if row.page_start is not None else 1,
+                        "page_end": row.page_end if row.page_end is not None else 1,
                     }
                 )
                 embeddings.append(vectors[0])
