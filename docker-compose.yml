@@ -4,6 +4,8 @@ services:
     container_name: normaextractor-app
     restart: unless-stopped
     env_file: .env
+    cpus: "0.75"
+    mem_limit: 2.8g
     volumes:
       - ./data:/data        # SQLite, ChromaDB, uploads, textos extraídos
       - ./models:/models:ro # arquivo(s) GGUF
