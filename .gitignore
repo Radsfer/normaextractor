@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Dados de runtime
+data/
+models/
+*.gguf
+backend/data/
+
+# Env / segredos
+.env
+!.env.example
+
+# SO / IDE
+.DS_Store
+*.swp
+.vscode/
+.idea/

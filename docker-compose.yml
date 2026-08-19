@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    container_name: normaextractor-app
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data        # SQLite, ChromaDB, uploads, textos extraídos
+      - ./models:/models:ro # arquivo(s) GGUF
+    networks:
+      - quest_questtrainer-network
+
+networks:
+  # rede compartilhada onde o nginx central (questtrainer-nginx) resolve os
+  # containers pelo nome — o app NÃO publica portas no host
+  quest_questtrainer-network:
+    external: true
