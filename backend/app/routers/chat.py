@@ -49,6 +49,7 @@ async def _chat_stream(
             vectorstore,
             top_k=deps.get_settings().RAG_TOP_K,
             document_ids=document_ids,
+            min_similarity=deps.get_settings().RAG_MIN_SIMILARITY,
         )
 
         if not hits:

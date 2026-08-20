@@ -64,19 +64,27 @@ def search_contexts(
     vectorstore,
     top_k: int = 5,
     document_ids: list[str] | None = None,
+    min_similarity: float = 0.5,
 ) -> list[ContextHit]:
     q_embedding = embedder.encode([query])[0]
     raw = vectorstore.query(q_embedding, top_k=top_k, document_ids=document_ids)
-    return [
-        ContextHit(
-            chunk_id=r["chunk_id"],
-            document_id=r["document_id"],
-            text=r.get("text") or "",
-            page_start=r.get("page_start"),
-            page_end=r.get("page_end"),
-            order=r.get("order"),
-            distance=r.get("distance", 0.0),
+    hits = []
+    for r in raw:
+        if not r.get("chunk_id"):
+            continue
+        # ChromaDB (espaço cosseno) retorna distância = 1 - similaridade.
+        similarity = 1.0 - float(r.get("distance", 0.0))
+        if similarity < min_similarity:
+            continue
+        hits.append(
+            ContextHit(
+                chunk_id=r["chunk_id"],
+                document_id=r["document_id"],
+                text=r.get("text") or "",
+                page_start=r.get("page_start"),
+                page_end=r.get("page_end"),
+                order=r.get("order"),
+                distance=r.get("distance", 0.0),
+            )
         )
-        for r in raw
-        if r.get("chunk_id")
-    ]
+    return hits

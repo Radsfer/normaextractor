@@ -42,6 +42,7 @@ class Settings(BaseSettings):
 
     # RAG
     RAG_TOP_K: int = 5
+    RAG_MIN_SIMILARITY: float = 0.5
 
     # CORS (mesma origem por padrão — frontend servido pelo próprio FastAPI)
     CORS_ORIGINS: str = ""
