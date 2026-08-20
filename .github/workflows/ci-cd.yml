@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy via SSH
+      - name: Configurar SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -54,4 +54,32 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+      - name: Iniciar build no servidor
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
           ssh "$SSH_USER@$SSH_HOST" 'bash /home/rafael/normaextractor/scripts/deploy.sh'
+      - name: Aguardar build e subir container
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          for i in $(seq 1 60); do
+            out=$(ssh -o BatchMode=yes -o ConnectTimeout=15 "$SSH_USER@$SSH_HOST" 'tail -20 /home/rafael/normaextractor/build.log 2>/dev/null' 2>/dev/null) || out=""
+            if echo "$out" | grep -qE 'failed to solve|^ERROR|CANCELED'; then
+              echo "$out"
+              echo "Build falhou no servidor"
+              exit 1
+            fi
+            if echo "$out" | grep -q 'Image normaextractor-app Built'; then
+              echo "Build concluído. Subindo container..."
+              ssh -o BatchMode=yes "$SSH_USER@$SSH_HOST" 'cd /home/rafael/normaextractor && docker compose up -d'
+              exit 0
+            fi
+            echo "Aguardando build no servidor... ($i)"
+            sleep 30
+          done
+          echo "Timeout aguardando o build no servidor"
+          exit 1
+
