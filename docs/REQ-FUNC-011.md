@@ -134,4 +134,4 @@ Funcionalidade: Autenticação de usuário via JWT
 
 | Versão | Data | Autor | Alteração |
 |--------|------|-------|-----------|
-| 1.0 | 19/08/2026 | Candidato JX Estágio Dev | Criação inicial |
+| 1.0 | 19/08/2026 | Rafael Adolfo Silva Ferreira | Criação inicial |

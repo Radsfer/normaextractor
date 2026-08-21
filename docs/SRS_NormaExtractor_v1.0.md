@@ -4,7 +4,7 @@
 > **Projeto:** `NormaExtractor`  
 > **Versão:** `1.0`  
 > **Data:** `19/08/2026`  
-> **Autor:** `Candidato JX Estágio Dev`
+> **Autor:** `Rafael Adolfo Silva Ferreira`
 
 ---
 
@@ -12,7 +12,7 @@
 
 | Versão | Data | Autor | Alterações |
 |--------|------|-------|------------|
-| 1.0 | 19/08/2026 | Candidato JX Estágio Dev | Rascunho inicial |
+| 1.0 | 19/08/2026 | Rafael Adolfo Silva Ferreira | Rascunho inicial |
 
 ---
 
@@ -20,7 +20,7 @@
 
 ### 1.1 Propósito (Purpose)
 
-Este documento especifica os requisitos do sistema NormaExtractor, responsável por receber documentos normativos em formato digital, extrair informações estruturadas de forma automatizada, armazenar os dados em banco vetorial e relacional, e permitir consulta interativa ao conteúdo processado por meio de interface web.
+Este documento especifica os requisitos do sistema NormaExtractor, desenvolvido como estudo de caso para uma vaga de estágio em desenvolvimento full stack e IA. O sistema é responsável por receber documentos normativos em formato digital, extrair informações estruturadas de forma automatizada, armazenar os dados em banco vetorial e relacional, e permitir consulta interativa ao conteúdo processado por meio de interface web.
 
 ### 1.2 Escopo (Scope)
 
@@ -430,6 +430,6 @@ As funções do sistema estão detalhadas nas fichas de requisitos individuais. 
 
 | ID | Localização | Descrição | Responsável | Prazo |
 |----|-------------|-----------|-------------|-------|
-| TBD-001 | Seção 2.1.4 | Versão exata do llama-cpp-python a ser fixada | Candidato | 25/08/2026 |
-| TBD-002 | Seção 3.4 | Valor exato de latência aceitável para bases > 100 documentos | Candidato | 25/08/2026 |
-| TBD-003 | Apêndice B | Diagrama de sequência do pipeline de processamento | Candidato | 25/08/2026 |
+| TBD-001 | Seção 2.1.4 | Versão exata do llama-cpp-python a ser fixada | Rafael Adolfo Silva Ferreira | 25/08/2026 |
+| TBD-002 | Seção 3.4 | Valor exato de latência aceitável para bases > 100 documentos | Rafael Adolfo Silva Ferreira | 25/08/2026 |
+| TBD-003 | Apêndice B | Diagrama de sequência do pipeline de processamento | Rafael Adolfo Silva Ferreira | 25/08/2026 |

@@ -123,4 +123,4 @@ Funcionalidade: Geração de embeddings semânticos
 
 | Versão | Data | Autor | Alteração |
 |--------|------|-------|-----------|
-| 1.0 | 19/08/2026 | Candidato JX Estágio Dev | Criação inicial |
+| 1.0 | 19/08/2026 | Rafael Adolfo Silva Ferreira | Criação inicial |
