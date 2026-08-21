@@ -1,19 +1,20 @@
 :root {
-  --bg: #f5f6f8;
+  --bg: #f4f6f9;
   --surface: #ffffff;
-  --border: #e3e6ea;
-  --text: #1f2933;
-  --text-muted: #6b7280;
-  --primary: #1f4e79;
-  --primary-hover: #163a5c;
-  --danger: #b42318;
-  --success-bg: #e8f5ee;
-  --success-text: #1c7a45;
-  --error-bg: #fdecea;
-  --error-text: #b42318;
-  --warning: #b7791f;
-  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
-  --radius: 8px;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --primary: #1e3a8a;
+  --primary-hover: #172b6e;
+  --primary-soft: #eef2ff;
+  --danger: #b91c1c;
+  --success-bg: #ecfdf5;
+  --success-text: #047857;
+  --error-bg: #fef2f2;
+  --error-text: #b91c1c;
+  --warning: #b45309;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --radius: 10px;
   --sans: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 
   color: var(--text);
@@ -27,6 +28,11 @@
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 body {
   margin: 0;
 }
@@ -34,6 +40,7 @@ body {
 h1 {
   font-size: 26px;
   font-weight: 600;
+  letter-spacing: -0.01em;
   margin: 0 0 4px;
 }
 
@@ -101,6 +108,7 @@ p {
   font-weight: 700;
   color: var(--primary);
   padding: 0 8px;
+  letter-spacing: -0.01em;
 }
 
 .sidebar-nav {
@@ -113,14 +121,16 @@ p {
 .sidebar-nav a {
   display: block;
   padding: 10px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .sidebar-nav a:hover {
-  background: #eef2f6;
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
 .sidebar-nav a.active {
@@ -137,11 +147,12 @@ p {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 8px 14px;
   font: inherit;
   font-weight: 500;
   cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .btn:disabled {
@@ -157,12 +168,18 @@ p {
 
 .btn-primary:not(:disabled):hover {
   background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .btn-danger {
   background: var(--danger);
   border-color: var(--danger);
   color: #ffffff;
+}
+
+.btn-danger:not(:disabled):hover {
+  background: #991b1b;
+  border-color: #991b1b;
 }
 
 .btn-ghost {
@@ -172,8 +189,8 @@ p {
 }
 
 .btn-ghost:hover {
-  background: #eef2f6;
-  color: var(--text);
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
 .btn-logout {
@@ -197,10 +214,16 @@ textarea {
   width: 100%;
   padding: 9px 11px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   font: inherit;
   color: var(--text);
   background: #ffffff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
 }
 
 textarea {
@@ -218,7 +241,7 @@ label {
 /* Alerts */
 .alert {
   padding: 10px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   margin: 12px 0;
   font-size: 14px;
 }
@@ -259,7 +282,7 @@ label {
 }
 
 .table tbody tr:hover {
-  background: #fafbfc;
+  background: #f8fafc;
 }
 
 .table-scroll {
@@ -340,7 +363,7 @@ label {
 }
 
 .metric-card {
-  background: #f8fafc;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
@@ -397,7 +420,7 @@ label {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(16, 24, 40, 0.45);
+  background: rgba(15, 23, 42, 0.45);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -408,8 +431,8 @@ label {
 
 .modal {
   background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
   width: 100%;
   max-width: 860px;
 }
@@ -472,12 +495,13 @@ label {
   align-items: center;
   justify-content: center;
   padding: 24px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
 }
 
 .login-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: var(--shadow);
   padding: 32px;
   width: 100%;
@@ -524,7 +548,7 @@ label {
   margin: 0;
   padding: 6px 10px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 13px;
   cursor: pointer;
   background: #f8fafc;
@@ -556,7 +580,7 @@ label {
 }
 
 .chat-assistant .chat-bubble {
-  background: #f0f3f6;
+  background: #f1f5f9;
 }
 
 .chat-bubble {
