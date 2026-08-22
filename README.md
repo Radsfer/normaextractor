@@ -20,6 +20,9 @@ consulta via chat RAG com citacao das fontes.
 
 Acesse a aplicacao online em: https://normaextractor.adolfo.tec.br
 
+> O acesso a demo e por convite. Para receber credenciais de teste, envie um
+> email para rafael@adolfo.tec.br.
+
 ## Visão geral
 
 O pipeline de processamento executa as seguintes etapas:
