@@ -10,6 +10,16 @@ O sistema foi projetado para operar em uma VPS com recursos limitados (CPU, sem 
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![CI/CD](https://github.com/Radsfer/normaextractor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Radsfer/normaextractor/actions)
 
+## Demo
+
+Abaixo, uma demonstracao do fluxo completo: login, upload de uma norma em PDF,
+acompanhamento do processamento, visualizacao das extracoes estruturadas e
+consulta via chat RAG com citacao das fontes.
+
+![Demo do NormaExtractor](normaextractor_demo.gif)
+
+Acesse a aplicacao online em: https://normaextractor.adolfo.tec.br
+
 ## Visão geral
 
 O pipeline de processamento executa as seguintes etapas:

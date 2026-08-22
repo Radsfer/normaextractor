@@ -20,12 +20,6 @@ backend/data/
 .env
 !.env.example
 
-# Currículo (não versionar)
-Curriculo_Rafael_Adolfo_Fullstack_IA.pdf
-Curriculo_Rafael_Adolfo.pdf
-curriculo_rafael_adolfo.tex
-Curriculo_Rafael_Adolfo_ATS.pdf
-
 # SO / IDE
 .DS_Store
 *.swp
